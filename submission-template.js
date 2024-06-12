@@ -48,7 +48,7 @@ const findFrequency = function(array) {
 
       return {
         most: mostFrequent,
-        leastFrequent
+        least: leastFrequent,
       };
 };
 
@@ -70,19 +70,18 @@ const largestPair = function(array) {
     return null;
   }
 
-  let max1 = -Infinity;
-  let max2 = -Infinity;
-
+  let maxProduct = array[0] * array[1];
+  
   for (let i = 0; i < array.length; i++) {
-    if (array[i] > max1) {
-      max2 = max1;
-      max1 = array[i];
-    } else if (array[i] > max2) {
-      max2 = array[i];
-    }
+    
+    let product = array[i] * array[i + 1];
+      if(product > maxProduct) {
+        maxProduct = product;
+      }
   }
-    return max1 * max2;
-};
+    return maxProduct;
+}
+  const array = [3,6,-2,-6,7,9];
 
 // 
 
