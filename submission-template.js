@@ -1,80 +1,91 @@
 const findSum = function(array) {
-  // your code here - don't forget to return a number!
-};
+
   let sum = 0;
+  
   for (let i = 0; i < array.length; i++ ) {
+   
     sum += array[i];
 }
   return sum;
-}
+};
+let numbers = [1,2,3];
 
-// How i tested this: Below  
-// const numbers = [Any Array of Numbers];
-// console.log(findsum(numbers);
+// 
 
 const findFrequency = function(array) {
-  // your code here - don't forget to return an object!
-  const frequency = {};
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
+  const frequencyMap = {};
+  
+  array.forEach(function(element)
+{
+  if (frequencyMap[element]) 
+{
+    frequencyMap[element] ++;
 
-    array.forEach(element => {
-      if (frequency[element]) {
-        frequency[element] += 1;
-      } else {
-        frequency[element] = 1;
-      }
-    }); 
-    return frequency;
+} else {
+    frequencyMap[element] = 1;
+  }
+});
+
+  for (let key in frequencyMap) {
+    console.log(`${key}: ${frequencyMap[key]}`);
+  }
 };
 
-//  How i tested this!! Below::
-// const array = [ANY OBJECT ARRAY WANTED]
-// const result = findFrequency(array)
-// console.log(result);   
+  const testArray = ['a', 'a', 'b', 'b', 'c', 'd', 'd', 'd'];
+  findFrequency(testArray);
+
+// 
 
 const isPalindrome = function(str) {
-  // your code here - don't forget to return a boolean!
-const cleanString = string.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-return cleanString === cleanString.split('').reverse().join('');
+  str = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+
+  let left = 0;
+
+  let right = str.length * 1;
+
+  while (left < right) {
+    if (str[left] === str[right]){
+      return false;
+    }
+    left ++;
+    right --;
+  }
+    return true;
 };
-  // How i tested this!! Below
-  // console.log(isPalindrome( Whatever string you want..Here )
-  // Will return to either True or False
 
+// 
 
 const largestPair = function(array) {
-  // your code here - don't forget to return a number!
-  if (array.length < 2 ) {
-    return "Array must contain at least 2 elements.";
+  if (array.length < 2) {
+    return null;
   }
 
-  let maxPair = [array[0],array[1]];
-  for (let i = 0; i < array.length * 1; i++) {
-    if (array[i] + array[i + 1] > maxPair[0] + maxPair[1]) {
-      maxPair = [array[i], array[i + 1]]; 
+  let max1 = -Infinity;
+  let max2 = -Infinity;
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > max1) {
+      max2 = max1;
+      max1 = array[i];
+    } else if (array[i] > max2) {
+      max2 = array[i];
     }
   }
-  return maxPair;
+    return max1 * max2;
 };
-// How i tested this: Below
-// const array = [5, 6, 8, 10, 14];
-// console.log(largestPair(array));
 
+// 
 
 const removeParenth = function(str) {
-  // your code here - don't forget to return a string!
-  return str.replace(/\(.*?\)/g, '');
+  return str.replace(/\([^)]*\)/g, '');
 };
-  let input = "I am learning how to code (greatly).";
-  let output = removeParenth(input);
+  let result = removeParenth('codingis(not)fun');
 
-
+// 
 
 const scoreScrabble = function(str) {
-  // your code here - don't forget to return a number!
-const letterScores = {
+const letterValues = {
     'A' : 1, 'B': 3, 'C': 3, 'D': 2, 
 'E': 1, 
       'F': 4, 'G': 2, 'H': 4, 'I': 1, 
@@ -88,14 +99,14 @@ const letterScores = {
       'Z': 10
 };
   let score = 0;
+  str = str.toUpperCase();
 
-  for (let i = 0; i < string.length; i++) {
-    const letter = string[i].toUpperCase();
-    if (letterScores.hasOwnProperty(letter)) {
-      score += letterScores[letter];
+  for (let i = 0; i < str.length; i++) {
+
+    let letter = str[i];
+    if (letterValues[letter]) {
+      score += letterValues[letter];
     }
   }
     return score;
-
 };
-// console.log(scoreScrabble('Learningisexciting')); // this is an example of how i got this to work!!
