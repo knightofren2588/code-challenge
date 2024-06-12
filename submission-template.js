@@ -13,46 +13,55 @@ let numbers = [1,2,3];
 // 
 
 const findFrequency = function(array) {
+  
   const frequencyMap = {};
   
-  array.forEach(function(element)
-{
-  if (frequencyMap[element]) 
-{
-    frequencyMap[element] ++;
+  array.forEach(element => {
+    if(frequencyMap[element]) {
+      
+      frequencyMap[element]++;
+    
+    } else {
+      frequencyMap[element]= 1;
 
-} else {
-    frequencyMap[element] = 1;
-  }
-});
+    } 
+  });
 
-  for (let key in frequencyMap) {
-    console.log(`${key}: ${frequencyMap[key]}`);
-  }
+    let mostFrequent = null;
+    let leastFrequent = null;
+    let maxFrequency = -Infinity;
+    let minFrequency = Infinity;
+
+    for(const element in frequencyMap) {
+      const frequency = frequencyMap[element];
+
+      if (frequency > maxFrequency) {
+        maxFrequency = frequency;
+          mostFrequent = element;
+      }
+
+      if (frequency < minFrequency) {
+        minFrequency = frequency;
+        leastFrequent = element;
+      }
+    }
+
+      return {
+        most: mostFrequent,
+        leastFrequent
+      };
 };
 
-  const testArray = ['a', 'a', 'b', 'b', 'c', 'd', 'd', 'd'];
-  findFrequency(testArray);
+  const array = ['a', 'a', 'b', 'b', 'c', 'd', 'd', 'd'];
+  const result = findFrequency(array);
 
 // 
 
 const isPalindrome = function(str) {
 
-  str = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-
-  let left = 0;
-
-  let right = str.length * 1;
-
-  while (left < right) {
-    if (str[left] === str[right]){
-      return false;
-    }
-    left ++;
-    right --;
-  }
-    return true;
-};
+  str = str.toLowerCase().replace(/[^a-z0-9]/g, '')
+    return str === str.split('').reverse().join('');
+}
 
 // 
 
